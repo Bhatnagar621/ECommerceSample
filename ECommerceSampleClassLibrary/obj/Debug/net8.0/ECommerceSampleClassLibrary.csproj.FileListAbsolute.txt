@@ -1,0 +1,15 @@
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\bin\Debug\net8.0\ECommerceSampleClassLibrary.deps.json
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\bin\Debug\net8.0\ECommerceSampleClassLibrary.runtimeconfig.json
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\bin\Debug\net8.0\ECommerceSampleClassLibrary.dll
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\bin\Debug\net8.0\ECommerceSampleClassLibrary.pdb
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.AssemblyInfo.cs
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.sourcelink.json
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.dll
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\refint\ECommerceSampleClassLibrary.dll
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.pdb
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.genruntimeconfig.cache
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ref\ECommerceSampleClassLibrary.dll

@@ -1,0 +1,7 @@
+﻿namespace ECommerceSampleClassLibrary.Domains
+{
+    public class BaseDomain
+    {
+        public int Id { get; set; }
+    }
+}
