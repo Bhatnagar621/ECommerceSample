@@ -2,7 +2,6 @@
 {
     public class Product: BaseDomain
     {
-        public int CategoryId { get; set; }
         public ProductCategory Category { get; set; } = null;
         public string Name { get; set; }
         public int Quantity { get; set; }

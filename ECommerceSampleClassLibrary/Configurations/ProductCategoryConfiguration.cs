@@ -16,8 +16,7 @@ namespace ECommerceSampleClassLibrary.Configurations
             builder.Property(x => x.Name)
                 .HasMaxLength(256);
             builder.HasMany(x => x.Products)
-                .WithOne(c => c.Category)
-                .HasForeignKey(x => x.CategoryId);
+                .WithOne(c => c.Category);
         }
     }
 }

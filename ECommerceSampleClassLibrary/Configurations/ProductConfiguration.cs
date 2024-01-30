@@ -10,7 +10,7 @@ namespace ECommerceSampleClassLibrary.Configurations
         {
             builder.Property(x => x.Name).HasMaxLength(256);
             builder.Property(x => x.Measurement).HasMaxLength(256);
-            builder.HasMany(x => x.Orders).WithOne(o => o.Product).HasForeignKey(o => o.ProductId);
+            builder.HasMany(x => x.Orders).WithOne(o => o.Product);
         }
     }
 }

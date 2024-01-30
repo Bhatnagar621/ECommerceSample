@@ -1,6 +1,13 @@
+using ECommerceSampleClassLibrary.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(option =>
+{
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -15,6 +22,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+void ApplyMigration()
+{
+    using (var scope = app?.Services.CreateScope())
+    {
+        var _db = scope?.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        if (_db?.Database.GetPendingMigrations().Count() > 0)
+        {
+            _db.Database.Migrate();
+        }
+    }
+}
+
+ApplyMigration();
 
 app.UseHttpsRedirection();
 
