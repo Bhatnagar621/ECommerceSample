@@ -2,10 +2,10 @@
 {
     public class Product: BaseDomain
     {
-        public ProductCategory Category { get; set; } = null;
+        public ProductCategory Category { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
         public string Measurement { get; set; }
-        public ICollection<Order> Orders { get; } = new List<Order>();
+        public ICollection<Order> Orders { get; }
     }
 }

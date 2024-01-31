@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceSampleClassLibrary.Domains
+namespace ECommerceSampleClassLibrary.Models
 {
-    public class Customer: BaseDomain
+    public class Customer
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -10,6 +11,5 @@ namespace ECommerceSampleClassLibrary.Domains
         public string Email { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
-        public ICollection<Order>? Order { get; }
     }
 }
