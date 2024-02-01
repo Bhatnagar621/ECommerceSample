@@ -4,13 +4,13 @@ using ECommerceSampleClassLibrary.Interfaces;
 
 namespace ECommerceSampleClassLibrary.Repositories
 {
-    internal class ProductCategoryRepository<TEntity> : IRepository<TEntity> where TEntity : ProductCategory
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseDomain
     {
-        private readonly AppDbContext _context;
-        public ProductCategoryRepository(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = new AppDbContext();
+        //public Repository(AppDbContext context)
+        //{
+        //    _context = context;
+        //}
         public void Add(TEntity entity)
         {
             _context.Add(entity);

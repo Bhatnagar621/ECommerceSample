@@ -2,8 +2,8 @@
 {
     public class Order: BaseDomain
     {
-        public Customer Customer { get; set; } = new Customer();
-        public Product Product { get; set; } = new Product();
+        public virtual Customer Customer { get; set; } = new Customer();
+        public virtual ICollection<Product> Products { get; set; }
         public int Quantity { get; set; }
         public string Status { get; set; }
     }

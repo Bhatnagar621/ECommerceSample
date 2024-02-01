@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceSampleClassLibrary.Models
 {
-    public class Customer
+    public class PostCustomer
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

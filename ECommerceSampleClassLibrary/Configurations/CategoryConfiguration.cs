@@ -5,14 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ECommerceSampleClassLibrary.Configurations
 {
-    internal class ProductCategoryConfiguration : IEntityTypeConfiguration<ProductCategory>
+    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<ProductCategory> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name)
                 .HasMaxLength(256);
-            builder.HasMany(x => x.Products)
-                .WithOne(c => c.Category);
         }
     }
 }

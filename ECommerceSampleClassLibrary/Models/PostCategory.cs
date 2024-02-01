@@ -1,7 +1,7 @@
 ﻿
 namespace ECommerceSampleClassLibrary.Models
 {
-    public class Category
+    public class PostCategory
     {
         public string Name { get; set; }
     }

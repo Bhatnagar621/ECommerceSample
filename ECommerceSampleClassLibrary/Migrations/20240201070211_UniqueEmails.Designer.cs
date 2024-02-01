@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerceSampleClassLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240130152342_init")]
-    partial class init
+    [Migration("20240201070211_UniqueEmails")]
+    partial class UniqueEmails
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,22 @@ namespace ECommerceSampleClassLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+                });
 
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Customer", b =>
                 {
@@ -53,6 +69,9 @@ namespace ECommerceSampleClassLibrary.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Customer");
                 });
 
@@ -63,9 +82,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Quantity")
@@ -79,8 +95,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Order");
                 });
@@ -114,20 +128,19 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.ProductCategory", b =>
+            modelBuilder.Entity("OrderProduct", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("OrdersId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrdersId", "ProductsId");
 
-                    b.ToTable("ProductCategory");
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Order", b =>
@@ -138,20 +151,12 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceSampleClassLibrary.Domains.Product", "Product")
-                        .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
                 {
-                    b.HasOne("ECommerceSampleClassLibrary.Domains.ProductCategory", "Category")
+                    b.HasOne("ECommerceSampleClassLibrary.Domains.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -160,19 +165,29 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("OrderProduct", b =>
+                {
+                    b.HasOne("ECommerceSampleClassLibrary.Domains.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceSampleClassLibrary.Domains.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Customer", b =>
                 {
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.ProductCategory", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

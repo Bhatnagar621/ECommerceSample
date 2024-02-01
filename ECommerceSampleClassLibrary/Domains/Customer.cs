@@ -10,6 +10,6 @@ namespace ECommerceSampleClassLibrary.Domains
         public string Email { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
-        public ICollection<Order>? Order { get; }
+        public virtual ICollection<Order>? Order { get; }
     }
 }

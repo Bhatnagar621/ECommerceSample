@@ -1,30 +1,41 @@
 ﻿using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Interfaces;
-using ECommerceSampleClassLibrary.Repositories;
+using ECommerceSampleClassLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceSample.Controllers
 {
     [ApiController]
-    [Route("product")]
+    [Route("products")]
     public class ProductController : Controller
     {
-        private readonly IProductRepository _productRepository;
-        public ProductController(IProductRepository productRepository)
+        private readonly IProductService _productRepository;
+        public ProductController(IProductService productrepository)
         {
-            _productRepository = productRepository;
+            _productRepository = productrepository;
         }
 
-        //[HttpGet("get/{id}")]
-        //public Product GetProductById(Guid id)
-        //{
-        //    return _productRepository.Get(id);
-        //}
+        [HttpGet("get{id}")]
+        public ViewProduct GetProduct(Guid id)
+        {
+            return _productRepository.GetProductById(id);
+        }
 
         [HttpPost("add")]
-        public void AddProduct([FromBody] ProductCategory product)
+        public void AddProduct([FromBody] PostProduct prod)
         {
-            _productRepository.Add(product);
+            _productRepository.AddProduct(prod);
+        }
+
+        [HttpDelete("delete")]
+        public void DeleteProduct(Guid id)
+        {
+            _productRepository.DeleteProduct(id);
+        }
+
+        [HttpPatch("update")]
+        public void UpdateProduct([FromBody] PostProduct prod) { 
+            _productRepository.UpdateProduct(prod);
         }
     }
 }
