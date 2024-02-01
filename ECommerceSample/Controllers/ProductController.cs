@@ -15,7 +15,7 @@ namespace ECommerceSample.Controllers
             _productRepository = productrepository;
         }
 
-        [HttpGet("get{id}")]
+        [HttpGet("get/{id}")]
         public ViewProduct GetProduct(Guid id)
         {
             return _productRepository.GetProductById(id);

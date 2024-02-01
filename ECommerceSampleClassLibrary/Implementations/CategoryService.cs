@@ -2,13 +2,14 @@
 using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Models;
 using ECommerceSampleClassLibrary.Repositories;
+using ECommerceSampleClassLibrary.Context;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
     public class CategoryService : ICategoryService
     {
         private readonly Repository<Category> _repository 
-            = new Repository<Category>();
+            = new Repository<Category>(new AppDbContext());
 
         public void AddCategory(PostCategory category)
         {
@@ -21,11 +22,7 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public ViewCategory GetCategory(Guid id)
         {
-            var cat = _repository.Get(id);
-            return new ViewCategory()
-            {
-                Name = cat.Name,
-            };
+            return new ViewCategory(_repository.Get(id));
         }
     }
 }

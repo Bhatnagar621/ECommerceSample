@@ -1,3 +1,4 @@
+using ECommerceSample.Middlewares;
 using ECommerceSampleClassLibrary.Context;
 using ECommerceSampleClassLibrary.Implementations;
 using ECommerceSampleClassLibrary.Interfaces;
@@ -34,7 +35,7 @@ void ApplyMigration()
     {
         var _db = scope?.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        if (_db?.Database.GetPendingMigrations().Count() > 0)
+        if (_db.Database.GetPendingMigrations().Count() > 0)
         {
             _db.Database.Migrate();
         }
@@ -46,6 +47,8 @@ ApplyMigration();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseEntityNotFoundMiddleware();
 
 app.MapControllers();
 

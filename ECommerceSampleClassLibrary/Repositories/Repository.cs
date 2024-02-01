@@ -1,16 +1,17 @@
 ﻿using ECommerceSampleClassLibrary.Context;
 using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceSampleClassLibrary.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseDomain
     {
-        private readonly AppDbContext _context = new AppDbContext();
-        //public Repository(AppDbContext context)
-        //{
-        //    _context = context;
-        //}
+        private readonly AppDbContext _context;
+        public Repository(AppDbContext context)
+        {
+            _context = context;
+        }
         public void Add(TEntity entity)
         {
             _context.Add(entity);

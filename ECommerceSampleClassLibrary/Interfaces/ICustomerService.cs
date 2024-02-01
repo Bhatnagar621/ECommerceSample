@@ -14,6 +14,5 @@ namespace ECommerceSampleClassLibrary.Interfaces
         public void UpdateCustomer(PostCustomer customer);
         public void DeleteCustomer(Guid id);
         public ViewCustomer GetCustomerById(Guid id);
-        public ViewCustomer GetCustomerByEmail(string email);
     }
 }

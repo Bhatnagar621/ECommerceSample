@@ -1,29 +1,44 @@
-﻿using ECommerceSampleClassLibrary.Domains;
+﻿using ECommerceSampleClassLibrary.Context;
+using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
+using ECommerceSampleClassLibrary.Repositories;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
     internal class CustomerService : ICustomerService
     {
+        private readonly Repository<Customer> _repository
+                                    = new Repository<Customer>(new AppDbContext());
+
         public void AddCustomer(PostCustomer customer)
         {
-            throw new NotImplementedException();
+            var customerEntity = new Customer()
+            {
+                Email = customer.Email,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                PhoneNumber = customer.PhoneNumber,
+            };
+            _repository.Add(customerEntity);
         }
 
         public void DeleteCustomer(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public ViewCustomer GetCustomerByEmail(string email)
-        {
-            throw new NotImplementedException();
+            var customer = _repository.Get(id);
+            if (customer != null)
+            {
+                _repository.Delete(customer);
+            }
+            else
+            {
+                throw new Exception("Customer doesn't exists");
+            }
         }
 
         public ViewCustomer GetCustomerById(Guid id)
         {
-            throw new NotImplementedException();
+            return new ViewCustomer(_repository.Get(id));
         }
 
         public void UpdateCustomer(PostCustomer customer)

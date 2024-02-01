@@ -15,7 +15,7 @@ namespace ECommerceSample.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        [HttpGet("get{id}")]
+        [HttpGet("get/{id}")]
         public ViewCategory GetCategory(Guid id)
         {
             return _categoryRepository.GetCategory(id);

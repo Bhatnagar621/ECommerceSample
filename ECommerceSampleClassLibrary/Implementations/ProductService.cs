@@ -9,9 +9,9 @@ namespace ECommerceSampleClassLibrary.Implementations
     public class ProductService : IProductService
     {
         private readonly Repository<Product> _repository
-                             = new Repository<Product>();
+                             = new Repository<Product>(new AppDbContext());
         private readonly Repository<Category> _catrepository
-                     = new Repository<Category>();
+                     = new Repository<Category>(new AppDbContext());
 
         public void AddProduct(PostProduct product)
         {
@@ -41,15 +41,7 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public ViewProduct GetProductById(Guid id)
         {
-            var prod =  _repository.Get(id);
-            var prodInfo = new ViewProduct()
-            {
-                Name = prod.Name,
-                Measurement = prod.Measurement,
-                Quantity = prod.Quantity,
-                Category = _catrepository.Get(prod.CategoryId).Name
-            };
-            return prodInfo;
+           return new ViewProduct(_repository.Get(id), _catrepository);
         }
 
         public void UpdateProduct(PostProduct product)
