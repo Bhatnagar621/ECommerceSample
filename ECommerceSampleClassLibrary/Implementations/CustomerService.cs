@@ -6,12 +6,12 @@ using ECommerceSampleClassLibrary.Repositories;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
-    internal class CustomerService : ICustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly Repository<Customer> _repository
                                     = new Repository<Customer>(new AppDbContext());
 
-        public void AddCustomer(PostCustomer customer)
+        public Guid AddCustomer(PostCustomer customer)
         {
             var customerEntity = new Customer()
             {
@@ -21,6 +21,7 @@ namespace ECommerceSampleClassLibrary.Implementations
                 PhoneNumber = customer.PhoneNumber,
             };
             _repository.Add(customerEntity);
+            return customerEntity.Id;
         }
 
         public void DeleteCustomer(Guid id)

@@ -2733,19 +2733,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kushagra.bhatnagar\\.nuget\\packages\\": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
       "projectName": "ECommerceSample",
-      "projectPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
-      "packagesPath": "C:\\Users\\kushagra.bhatnagar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\obj\\",
+      "projectPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kushagra.bhatnagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2759,8 +2759,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
-              "projectPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj"
+            "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj"
             }
           }
         }

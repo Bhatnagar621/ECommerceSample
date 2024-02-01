@@ -10,7 +10,7 @@ namespace ECommerceSampleClassLibrary.Interfaces
 {
     public interface ICustomerService
     {
-        public void AddCustomer(PostCustomer customer);
+        public Guid AddCustomer(PostCustomer customer);
         public void UpdateCustomer(PostCustomer customer);
         public void DeleteCustomer(Guid id);
         public ViewCustomer GetCustomerById(Guid id);

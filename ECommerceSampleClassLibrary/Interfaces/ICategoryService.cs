@@ -5,7 +5,7 @@ namespace ECommerceSampleClassLibrary.Interfaces
 {
     public interface ICategoryService
     {
-        public void AddCategory(PostCategory category);
+        public Guid AddCategory(PostCategory category);
         public ViewCategory GetCategory(Guid id);
     }
 }

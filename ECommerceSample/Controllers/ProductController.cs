@@ -22,9 +22,9 @@ namespace ECommerceSample.Controllers
         }
 
         [HttpPost("add")]
-        public void AddProduct([FromBody] PostProduct prod)
+        public Guid AddProduct([FromBody] PostProduct prod)
         {
-            _productRepository.AddProduct(prod);
+            return _productRepository.AddProduct(prod);
         }
 
         [HttpDelete("delete")]

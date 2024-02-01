@@ -11,13 +11,14 @@ namespace ECommerceSampleClassLibrary.Implementations
         private readonly Repository<Category> _repository 
             = new Repository<Category>(new AppDbContext());
 
-        public void AddCategory(PostCategory category)
+        public Guid AddCategory(PostCategory category)
         {
             var categoryEntity = new Category()
             {
                Name = category.Name 
             };
             _repository.Add(categoryEntity);
+            return categoryEntity.Id;
         }
 
         public ViewCategory GetCategory(Guid id)

@@ -13,7 +13,7 @@ namespace ECommerceSampleClassLibrary.Implementations
         private readonly Repository<Category> _catrepository
                      = new Repository<Category>(new AppDbContext());
 
-        public void AddProduct(PostProduct product)
+        public Guid AddProduct(PostProduct product)
         {
             var productEntity = new Product()
             {
@@ -24,6 +24,7 @@ namespace ECommerceSampleClassLibrary.Implementations
             };
 
             _repository.Add(productEntity);
+            return productEntity.Id;
         }
 
         public void DeleteProduct(Guid id)

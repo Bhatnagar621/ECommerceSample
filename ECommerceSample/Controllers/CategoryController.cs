@@ -22,9 +22,9 @@ namespace ECommerceSample.Controllers
         }
 
         [HttpPost("add")]
-        public void AddCategory(PostCategory category)
+        public Guid AddCategory(PostCategory category)
         {
-            _categoryRepository.AddCategory(category);
+            return _categoryRepository.AddCategory(category);
         }
     }
 }
