@@ -1,10 +1,5 @@
 ﻿using ECommerceSampleClassLibrary.Domains;
-using ECommerceSampleClassLibrary.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ECommerceSampleClassLibrary.Interfaces;
 
 namespace ECommerceSampleClassLibrary.Models
 {
@@ -15,8 +10,8 @@ namespace ECommerceSampleClassLibrary.Models
         public string Measurement { get; set; }
         public string Category { get; set; }
 
-        public ViewProduct() { }
-        public ViewProduct(Product product, Repository<Category> _catrepository) {
+        public ViewProduct(Product product) { }
+        public ViewProduct(Product product, IRepository<Category> _catrepository) {
             Name = product.Name;
             Measurement = product.Measurement;
             Quantity = product.Quantity;

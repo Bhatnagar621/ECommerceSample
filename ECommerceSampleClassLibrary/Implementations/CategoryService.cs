@@ -8,8 +8,11 @@ namespace ECommerceSampleClassLibrary.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private readonly Repository<Category> _repository 
-            = new Repository<Category>(new AppDbContext());
+        private readonly IRepository<Category> _repository;
+        public CategoryService(IRepository<Category> repository)
+        {
+            _repository = repository;
+        }
 
         public Guid AddCategory(PostCategory category)
         {

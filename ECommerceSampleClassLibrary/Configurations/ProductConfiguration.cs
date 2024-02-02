@@ -10,8 +10,13 @@ namespace ECommerceSampleClassLibrary.Configurations
         {
             builder.Property(x => x.Name).HasMaxLength(256);
             builder.Property(x => x.Measurement).HasMaxLength(256);
-            builder.HasOne(x => x.Category).WithOne(c => c.Product);
-            builder.HasMany(x => x.Orders).WithMany(o => o.Products);
+            builder.HasOne(x => x.Category).WithOne().HasForeignKey<Product>(p => p.CategoryId);
+            //builder.HasMany(x => x.Orders).WithMany(o => o.Products)
+            //    .UsingEntity(
+            //        "OrderProduct",
+            //        p => p.HasOne(typeof(Product)).WithMany().HasForeignKey("ProductsId").HasPrincipalKey(nameof(Product.Id)),
+            //        o => o.HasOne(typeof(Order)).WithMany().HasForeignKey("OrdersId").HasPrincipalKey(nameof(Order.Id)),
+            //        l => l.HasKey("OrdersId", "ProductsId")); 
         }
     }
 }

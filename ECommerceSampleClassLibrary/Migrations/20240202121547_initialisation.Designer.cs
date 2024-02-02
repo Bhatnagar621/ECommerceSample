@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerceSampleClassLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240201070211_UniqueEmails")]
-    partial class UniqueEmails
+    [Migration("20240202121547_initialisation")]
+    partial class initialisation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,7 +94,8 @@ namespace ECommerceSampleClassLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
 
                     b.ToTable("Order");
                 });
@@ -123,7 +124,8 @@ namespace ECommerceSampleClassLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
 
                     b.ToTable("Product");
                 });
@@ -146,8 +148,8 @@ namespace ECommerceSampleClassLibrary.Migrations
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Order", b =>
                 {
                     b.HasOne("ECommerceSampleClassLibrary.Domains.Customer", "Customer")
-                        .WithMany("Order")
-                        .HasForeignKey("CustomerId")
+                        .WithOne()
+                        .HasForeignKey("ECommerceSampleClassLibrary.Domains.Order", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -157,8 +159,8 @@ namespace ECommerceSampleClassLibrary.Migrations
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
                 {
                     b.HasOne("ECommerceSampleClassLibrary.Domains.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .WithOne()
+                        .HasForeignKey("ECommerceSampleClassLibrary.Domains.Product", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -178,16 +180,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Customer", b =>
-                {
-                    b.Navigation("Order");
                 });
 #pragma warning restore 612, 618
         }

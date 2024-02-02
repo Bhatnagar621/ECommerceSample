@@ -91,7 +91,8 @@ namespace ECommerceSampleClassLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
 
                     b.ToTable("Order");
                 });
@@ -144,8 +145,8 @@ namespace ECommerceSampleClassLibrary.Migrations
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Order", b =>
                 {
                     b.HasOne("ECommerceSampleClassLibrary.Domains.Customer", "Customer")
-                        .WithMany("Order")
-                        .HasForeignKey("CustomerId")
+                        .WithOne()
+                        .HasForeignKey("ECommerceSampleClassLibrary.Domains.Order", "CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -155,7 +156,7 @@ namespace ECommerceSampleClassLibrary.Migrations
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
                 {
                     b.HasOne("ECommerceSampleClassLibrary.Domains.Category", "Category")
-                        .WithOne("Product")
+                        .WithOne()
                         .HasForeignKey("ECommerceSampleClassLibrary.Domains.Product", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -176,17 +177,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Category", b =>
-                {
-                    b.Navigation("Product")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Customer", b =>
-                {
-                    b.Navigation("Order");
                 });
 #pragma warning restore 612, 618
         }

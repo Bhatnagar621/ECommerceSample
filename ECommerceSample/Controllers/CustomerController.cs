@@ -13,6 +13,7 @@ namespace ECommerceSample.Controllers
         {
             _customerService = customerService;
         }
+
         [HttpGet("get/{id}")]
         public ViewCustomer GetCustomerById(Guid id)
         {
@@ -29,6 +30,12 @@ namespace ECommerceSample.Controllers
         public void DeleteCustomer(Guid id) 
         { 
             _customerService.DeleteCustomer(id);
+        }
+
+        [HttpPatch("update/{id}")]
+        public void UpdateCustomer(Guid id, PostCustomer customer)
+        {
+            _customerService.UpdateCustomer(id, customer);
         }
     }
 }

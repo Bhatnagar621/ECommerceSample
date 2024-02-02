@@ -41,9 +41,14 @@ namespace ECommerceSampleClassLibrary.Repositories
             return _context.Find<TEntity>(id);
         }
 
-        public List<TEntity> GetAll(TEntity entity)
+        public ICollection<TEntity> GetAll(ICollection<Guid> ids)
         {
-            throw new NotImplementedException();
+            ICollection<TEntity> list = new List<TEntity>();
+            foreach (var id in ids)
+            {
+                list.Add(Get(id));
+            }
+            return list;
         }
 
         public void Update(TEntity entity)

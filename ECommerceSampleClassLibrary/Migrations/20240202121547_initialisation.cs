@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ECommerceSampleClassLibrary.Migrations
 {
     /// <inheritdoc />
-    public partial class initialization : Migration
+    public partial class initialisation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,7 +65,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ProductId = table.Column<Guid>(type: "uuid", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
@@ -78,41 +77,70 @@ namespace ECommerceSampleClassLibrary.Migrations
                         principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderProduct",
+                columns: table => new
+                {
+                    OrdersId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ProductsId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderProduct", x => new { x.OrdersId, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_Order_Product_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_OrderProduct_Order_OrdersId",
+                        column: x => x.OrdersId,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderProduct_Product_ProductsId",
+                        column: x => x.ProductsId,
                         principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
-                column: "CustomerId");
+                name: "IX_Customer_Email",
+                table: "Customer",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_ProductId",
+                name: "IX_Order_CustomerId",
                 table: "Order",
-                column: "ProductId");
+                column: "CustomerId",
+                unique: false);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProduct_ProductsId",
+                table: "OrderProduct",
+                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CategoryId",
                 table: "Product",
-                column: "CategoryId");
+                column: "CategoryId",
+                unique: false);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "OrderProduct");
+
+            migrationBuilder.DropTable(
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "Category");

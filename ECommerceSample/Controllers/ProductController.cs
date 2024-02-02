@@ -1,4 +1,4 @@
-﻿using ECommerceSampleClassLibrary.Domains;
+﻿
 using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +21,7 @@ namespace ECommerceSample.Controllers
             return _productRepository.GetProductById(id);
         }
 
-        [HttpPost("add")]
+        [HttpPut("add")]
         public Guid AddProduct([FromBody] PostProduct prod)
         {
             return _productRepository.AddProduct(prod);
@@ -33,9 +33,9 @@ namespace ECommerceSample.Controllers
             _productRepository.DeleteProduct(id);
         }
 
-        [HttpPatch("update")]
-        public void UpdateProduct([FromBody] PostProduct prod) { 
-            _productRepository.UpdateProduct(prod);
+        [HttpPatch("update/{id}")]
+        public void UpdateProduct(Guid id, [FromBody] PostProduct prod) { 
+            _productRepository.UpdateProduct(id, prod);
         }
     }
 }

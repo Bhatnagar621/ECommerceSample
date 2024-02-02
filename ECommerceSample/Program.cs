@@ -1,7 +1,9 @@
 using ECommerceSample.Middlewares;
 using ECommerceSampleClassLibrary.Context;
+using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Implementations;
 using ECommerceSampleClassLibrary.Interfaces;
+using ECommerceSampleClassLibrary.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
+builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
+builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
+builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 
 var app = builder.Build();
 

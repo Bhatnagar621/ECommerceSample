@@ -8,8 +8,11 @@ namespace ECommerceSampleClassLibrary.Implementations
 {
     public class CustomerService : ICustomerService
     {
-        private readonly Repository<Customer> _repository
-                                    = new Repository<Customer>(new AppDbContext());
+        private readonly IRepository<Customer> _repository;
+        public CustomerService(IRepository<Customer> repository)
+        {
+            _repository = repository;
+        }
 
         public Guid AddCustomer(PostCustomer customer)
         {
@@ -42,9 +45,16 @@ namespace ECommerceSampleClassLibrary.Implementations
             return new ViewCustomer(_repository.Get(id));
         }
 
-        public void UpdateCustomer(PostCustomer customer)
+        public void UpdateCustomer(Guid id, PostCustomer customer)
         {
-            throw new NotImplementedException();
+            _repository.Update(new Customer()
+            {
+                Id = id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                PhoneNumber = customer.PhoneNumber,
+                Email = customer.Email,
+            });
         }
     }
 }
