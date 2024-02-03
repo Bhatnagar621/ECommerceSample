@@ -1,7 +1,6 @@
 ﻿using ECommerceSampleClassLibrary.Context;
 using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceSampleClassLibrary.Repositories
 {
@@ -41,12 +40,19 @@ namespace ECommerceSampleClassLibrary.Repositories
             return _context.Find<TEntity>(id);
         }
 
-        public ICollection<TEntity> GetAll(ICollection<Guid> ids)
+        public ICollection<TEntity> GetAll(ICollection<Guid>? ids)
         {
             ICollection<TEntity> list = new List<TEntity>();
-            foreach (var id in ids)
+            if(ids != null)
             {
-                list.Add(Get(id));
+                foreach (var id in ids)
+                {
+                    list.Add(Get(id));
+                }
+            }
+            else
+            {
+                list = _context.Set<TEntity>().Where(t => t.Id != Guid.Empty).ToList();
             }
             return list;
         }

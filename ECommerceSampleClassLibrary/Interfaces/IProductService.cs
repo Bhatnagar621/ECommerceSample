@@ -9,5 +9,6 @@ namespace ECommerceSampleClassLibrary.Interfaces
         public void UpdateProduct(Guid id, PostProduct product);
         public void DeleteProduct(Guid id);
         public ViewProduct GetProductById(Guid id);
+        public ICollection<ViewProduct> GetAllProduct();
     }
 }

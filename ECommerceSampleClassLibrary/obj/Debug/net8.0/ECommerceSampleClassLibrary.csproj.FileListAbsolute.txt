@@ -28,3 +28,4 @@ C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSampleClassLib
 C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.pdb
 C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ECommerceSampleClassLibrary.genruntimeconfig.cache
 C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\ref\ECommerceSampleClassLibrary.dll
+C:\Users\DELL\source\repos\ECommerceSample\ECommerceSampleClassLibrary\obj\Debug\net8.0\EFCoreNpgsqlNetTopologySuite.cs

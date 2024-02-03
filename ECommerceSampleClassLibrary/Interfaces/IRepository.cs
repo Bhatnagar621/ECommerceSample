@@ -52,6 +52,6 @@ namespace ECommerceSampleClassLibrary.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public ICollection<TEntity> GetAll(ICollection<Guid> ids);
+        public ICollection<TEntity> GetAll(ICollection<Guid>? ids);
     }
 }

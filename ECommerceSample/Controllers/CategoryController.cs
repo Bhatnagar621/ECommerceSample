@@ -1,5 +1,4 @@
-﻿using ECommerceSampleClassLibrary.Domains;
-using ECommerceSampleClassLibrary.Interfaces;
+﻿using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +12,12 @@ namespace ECommerceSample.Controllers
         public CategoryController(ICategoryService categoryRepository)
         {
             _categoryRepository = categoryRepository;
+        }
+
+        [HttpGet("getAll")]
+        public ICollection<ViewCategory> GetAllCategory()
+        {
+            return _categoryRepository.GetAllCategory();
         }
 
         [HttpGet("get/{id}")]

@@ -12,7 +12,6 @@ namespace ECommerceSampleClassLibrary.Interfaces
     public interface IOrderService
     {
         public Guid AddOrder(PostOrder order);
-        public void UpdateOrder(Guid id, PostOrder order);
         public void DeleteOrder(Guid id);
     }
 }

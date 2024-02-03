@@ -7,6 +7,6 @@
         public string Name { get; set; }
         public int Quantity { get; set; }
         public string Measurement { get; set; }
-        public virtual ICollection<Order>? Orders { get; }
+        public virtual ICollection<OrderProduct>? Orders { get; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+﻿using ECommerceSampleClassLibrary.Exceptions;
 
 namespace ECommerceSample.Middlewares
 {
@@ -14,14 +12,27 @@ namespace ECommerceSample.Middlewares
             _next = next;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public async Task Invoke(HttpContext httpContext)
         {
+            try
+            {
 
-            return _next(httpContext);
+                await _next(httpContext);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                httpContext.Response.StatusCode = 404;
+                var message = ex.Message;
+                httpContext.Response.Headers.Append("Error", message);
+            }
+            catch (Exception)
+            {
+                httpContext.Response.StatusCode = 500;
+                httpContext.Response.Headers.Append("Error", "Something went wrong:(");
+            }
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
     public static class EntityNotFoundMiddlewareExtensions
     {
         public static IApplicationBuilder UseEntityNotFoundMiddleware(this IApplicationBuilder builder)

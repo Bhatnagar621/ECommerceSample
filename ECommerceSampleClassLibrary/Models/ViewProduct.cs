@@ -10,7 +10,7 @@ namespace ECommerceSampleClassLibrary.Models
         public string Measurement { get; set; }
         public string Category { get; set; }
 
-        public ViewProduct(Product product) { }
+        public ViewProduct() { }
         public ViewProduct(Product product, IRepository<Category> _catrepository) {
             Name = product.Name;
             Measurement = product.Measurement;

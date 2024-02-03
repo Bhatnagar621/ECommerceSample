@@ -81,9 +81,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -95,6 +92,30 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .IsUnique();
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.OrderProduct", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
@@ -127,21 +148,6 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<Guid>("OrdersId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("OrdersId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderProduct");
-                });
-
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Order", b =>
                 {
                     b.HasOne("ECommerceSampleClassLibrary.Domains.Customer", "Customer")
@@ -151,6 +157,25 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.OrderProduct", b =>
+                {
+                    b.HasOne("ECommerceSampleClassLibrary.Domains.Order", "Order")
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceSampleClassLibrary.Domains.Product", "Product")
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
@@ -164,19 +189,14 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Order", b =>
                 {
-                    b.HasOne("ECommerceSampleClassLibrary.Domains.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Products");
+                });
 
-                    b.HasOne("ECommerceSampleClassLibrary.Domains.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("ECommerceSampleClassLibrary.Domains.Product", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

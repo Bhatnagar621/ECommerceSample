@@ -13,11 +13,10 @@ namespace ECommerceSample.Controllers
         {
             _customerService = customerService;
         }
-
-        [HttpGet("get/{id}")]
-        public ViewCustomer GetCustomerById(Guid id)
+        [HttpGet("getDetails/{id}")]
+        public ViewCustomer GetAllDetails(Guid id)
         {
-            return _customerService.GetCustomerById(id);
+            return _customerService.GetOrdersByCustomers(id);
         }
 
         [HttpPost("add")]

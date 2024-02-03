@@ -1,3 +1,4 @@
+using ECommerceSample.Filters;
 using ECommerceSample.Middlewares;
 using ECommerceSampleClassLibrary.Context;
 using ECommerceSampleClassLibrary.Domains;
@@ -15,11 +16,20 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
+//registering filters
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add<InventoryCheckFilter>();
+});
+
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//registering dependencies
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
@@ -28,6 +38,7 @@ builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
 builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
 builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
+builder.Services.AddScoped<IRepository<OrderProduct>, Repository<OrderProduct>>();
 
 var app = builder.Build();
 
@@ -37,13 +48,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//applying migrations
 void ApplyMigration()
 {
     using (var scope = app?.Services.CreateScope())
     {
         var _db = scope?.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        if (_db.Database.GetPendingMigrations().Count() > 0)
+        if (_db?.Database.GetPendingMigrations().Count() > 0)
         {
             _db.Database.Migrate();
         }
@@ -56,7 +69,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseEntityNotFoundMiddleware();
+app.UseEntityNotFoundMiddleware(); //custom middleware to display error
 
 app.MapControllers();
 

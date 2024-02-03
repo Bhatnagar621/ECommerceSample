@@ -1,8 +1,7 @@
-﻿using ECommerceSampleClassLibrary.Context;
-using ECommerceSampleClassLibrary.Domains;
+﻿using ECommerceSampleClassLibrary.Domains;
+using ECommerceSampleClassLibrary.Exceptions;
 using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
-using ECommerceSampleClassLibrary.Repositories;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
@@ -15,7 +14,18 @@ namespace ECommerceSampleClassLibrary.Implementations
         {
             _repository = repository;
             _catrepository = catrepository;
-        }   
+        }
+
+        public ICollection<ViewProduct> GetAllProduct()
+        {
+            ICollection<ViewProduct> productList = new List<ViewProduct>();
+            var prods = _repository.GetAll(null);
+            foreach (var product in prods)
+            {
+                productList.Add(new ViewProduct(product, _catrepository));
+            }
+            return productList;
+        }
 
         public Guid AddProduct(PostProduct product)
         {
@@ -33,24 +43,19 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public void DeleteProduct(Guid id)
         {
-            var productEntity = _repository.Get(id);
-            if (productEntity != null)
-            {
-                _repository.Delete(productEntity);
-            }
-            else
-            {
-                throw new Exception("Product not found");
-            }
+            CheckEntityFoundError(id);
+            _repository.Delete(_repository.Get(id));
         }
 
         public ViewProduct GetProductById(Guid id)
         {
+            CheckEntityFoundError(id); 
            return new ViewProduct(_repository.Get(id), _catrepository);
         }
 
         public void UpdateProduct(Guid id, PostProduct product)
         {
+            CheckEntityFoundError(id);
             var prod = new Product()
             {
                 Id = id,
@@ -61,5 +66,19 @@ namespace ECommerceSampleClassLibrary.Implementations
             };
             _repository.Update(prod);
         }
+
+        public void CheckEntityFoundError(Guid id)
+        {
+            var customer = _repository.Get(id);
+            if (customer != null)
+            {
+                return;
+            }
+            else
+            {
+                throw new EntityNotFoundException("product not found");
+            }
+        }
+
     }
 }

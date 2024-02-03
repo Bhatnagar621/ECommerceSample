@@ -1,8 +1,7 @@
 ﻿using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Models;
-using ECommerceSampleClassLibrary.Repositories;
-using ECommerceSampleClassLibrary.Context;
+using ECommerceSampleClassLibrary.Exceptions;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
@@ -12,6 +11,15 @@ namespace ECommerceSampleClassLibrary.Implementations
         public CategoryService(IRepository<Category> repository)
         {
             _repository = repository;
+        }
+
+        public ICollection<ViewCategory> GetAllCategory()
+        {
+            ICollection<ViewCategory> categoryList = new List<ViewCategory>();
+            foreach (var category in _repository.GetAll(null)) { 
+                categoryList.Add(new ViewCategory(category));
+            }
+            return categoryList;
         }
 
         public Guid AddCategory(PostCategory category)
@@ -26,7 +34,21 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public ViewCategory GetCategory(Guid id)
         {
+            CheckEntityFoundError(id);
             return new ViewCategory(_repository.Get(id));
+        }
+
+        public void CheckEntityFoundError(Guid id)
+        {
+            var customer = _repository.Get(id);
+            if (customer != null)
+            {
+                return;
+            }
+            else
+            {
+                throw new EntityNotFoundException("category not found");
+            }
         }
     }
 }

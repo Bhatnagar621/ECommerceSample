@@ -1,4 +1,5 @@
-﻿using ECommerceSampleClassLibrary.Interfaces;
+﻿using ECommerceSample.Filters;
+using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,16 @@ namespace ECommerceSample.Controllers
         }
 
         [HttpPost("add")]
+        [InventoryCheckFilter]
         public Guid AddOrder([FromBody] PostOrder postOrder)
         {
             return _orderRepository.AddOrder(postOrder);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public void DeleteOrder(Guid id)
+        {
+            _orderRepository.DeleteOrder(id);
         }
     }
 }
