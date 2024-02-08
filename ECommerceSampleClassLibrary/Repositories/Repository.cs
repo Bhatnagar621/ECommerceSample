@@ -59,7 +59,7 @@ namespace ECommerceSampleClassLibrary.Repositories
 
         public void Update(TEntity entity)
         {
-            _context.Update(entity);
+            _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
         }
 

@@ -43,40 +43,46 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public void DeleteProduct(Guid id)
         {
-            CheckEntityFoundError(id);
-            _repository.Delete(_repository.Get(id));
+            if (CheckEntityFoundError(id))
+                _repository.Delete(_repository.Get(id));
+            else throw new EntityNotFoundException("customer not found");
         }
 
         public ViewProduct GetProductById(Guid id)
         {
-            CheckEntityFoundError(id); 
-           return new ViewProduct(_repository.Get(id), _catrepository);
+            if (CheckEntityFoundError(id))
+                return new ViewProduct(_repository.Get(id), _catrepository);
+            else throw new EntityNotFoundException("customer not found");
         }
 
         public void UpdateProduct(Guid id, PostProduct product)
         {
-            CheckEntityFoundError(id);
-            var prod = new Product()
+            if (CheckEntityFoundError(id))
             {
-                Id = id,
-                Name = product.Name,
-                Quantity = product.Quantity,
-                Measurement = product.Measurement,
-                CategoryId = product.CategoryId,
-            };
-            _repository.Update(prod);
+                var prod = new Product()
+                {
+                    Id = id,
+                    Name = product.Name,
+                    Quantity = product.Quantity,
+                    Measurement = product.Measurement,
+                    CategoryId = product.CategoryId,
+                };
+                _repository.Update(prod);
+            }
+            else throw new EntityNotFoundException("customer not found");
+
         }
 
-        public void CheckEntityFoundError(Guid id)
+        public bool CheckEntityFoundError(Guid id)
         {
             var customer = _repository.Get(id);
             if (customer != null)
             {
-                return;
+                return true;
             }
             else
             {
-                throw new EntityNotFoundException("product not found");
+                return false;
             }
         }
 

@@ -15,31 +15,31 @@ namespace ECommerceSample.Controllers
             _productRepository = productrepository;
         }
 
-        [HttpGet("getAll")]
+        [HttpGet]
         public ICollection<ViewProduct> GetAllProducts()
         {
             return _productRepository.GetAllProduct();
         }
 
-        [HttpGet("get/{id}")]
+        [HttpGet("{id}")]
         public ViewProduct GetProduct(Guid id)
         {
             return _productRepository.GetProductById(id);
         }
 
-        [HttpPut("add")]
+        [HttpPut]
         public Guid AddProduct([FromBody] PostProduct prod)
         {
             return _productRepository.AddProduct(prod);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public void DeleteProduct(Guid id)
         {
             _productRepository.DeleteProduct(id);
         }
 
-        [HttpPatch("update/{id}")]
+        [HttpPatch("{id}")]
         public void UpdateProduct(Guid id, [FromBody] PostProduct prod) { 
             _productRepository.UpdateProduct(id, prod);
         }

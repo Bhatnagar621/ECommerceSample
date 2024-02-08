@@ -1,4 +1,4 @@
-﻿
+﻿using ECommerceSampleClassLibrary.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceSampleClassLibrary.Models
@@ -7,9 +7,11 @@ namespace ECommerceSampleClassLibrary.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [EmailAddress]
-        public string Email { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public RolesEnum Role { get; set; } = RolesEnum.Customer;
     }
 }

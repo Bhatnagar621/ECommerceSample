@@ -4,8 +4,12 @@ using ECommerceSampleClassLibrary.Context;
 using ECommerceSampleClassLibrary.Domains;
 using ECommerceSampleClassLibrary.Implementations;
 using ECommerceSampleClassLibrary.Interfaces;
+using ECommerceSampleClassLibrary.Models;
 using ECommerceSampleClassLibrary.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,11 +38,27 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
 builder.Services.AddScoped<IRepository<Customer>, Repository<Customer>>();
 builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
 builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 builder.Services.AddScoped<IRepository<OrderProduct>, Repository<OrderProduct>>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+}
+);
 
 var app = builder.Build();
 
@@ -63,14 +83,15 @@ void ApplyMigration()
     }
 }
 
+
 ApplyMigration();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseEntityNotFoundMiddleware(); //custom middleware to display error
-
+//app.UseEntityNotFoundMiddleware(); //custom middleware to display error
+//app.UseAuthenticationMiddleware();
 app.MapControllers();
 
 app.Run();

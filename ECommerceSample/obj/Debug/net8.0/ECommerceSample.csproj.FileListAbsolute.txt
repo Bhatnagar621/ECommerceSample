@@ -218,3 +218,17 @@ C:\Users\DELL\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Newt
 C:\Users\DELL\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll
 C:\Users\DELL\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Npgsql.NetTopologySuite.dll
 C:\Users\DELL\source\repos\ECommerceSample\ECommerceSample\obj\Debug\net8.0\EFCoreNpgsqlNetTopologySuite.cs
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\NetTopologySuite.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\NetTopologySuite.IO.PostGis.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Npgsql.NetTopologySuite.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\obj\Debug\net8.0\EFCoreNpgsqlNetTopologySuite.cs
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\kushagra.bhatnagar\source\repos\ECommerceSample\ECommerceSample\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

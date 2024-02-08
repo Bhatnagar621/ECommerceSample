@@ -31,7 +31,9 @@ namespace ECommerceSampleClassLibrary.Migrations
                     FirstName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     LastName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    PhoneNumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    Roles = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,11 +67,11 @@ namespace ECommerceSampleClassLibrary.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Status = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
+                    Status = table.Column<int>(type: "integer", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id );
+                    table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Order_Customer_CustomerId",
                         column: x => x.CustomerId,
@@ -89,7 +91,7 @@ namespace ECommerceSampleClassLibrary.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderProduct", x => x.ProductId);
+                    table.PrimaryKey("PK_OrderProduct", x => x.Id);
                     table.ForeignKey(
                         name: "FK_OrderProduct_Order_OrderId",
                         column: x => x.OrderId,
@@ -114,7 +116,7 @@ namespace ECommerceSampleClassLibrary.Migrations
                 name: "IX_Order_CustomerId",
                 table: "Order",
                 column: "CustomerId",
-                unique: false);
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderProduct_OrderId",
@@ -130,7 +132,7 @@ namespace ECommerceSampleClassLibrary.Migrations
                 name: "IX_Product_CategoryId",
                 table: "Product",
                 column: "CategoryId",
-                unique: false);
+                unique: true);
         }
 
         /// <inheritdoc />

@@ -1,7 +1,9 @@
 ﻿using ECommerceSampleClassLibrary.Domains;
+using ECommerceSampleClassLibrary.Enums;
 using ECommerceSampleClassLibrary.Exceptions;
 using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerceSampleClassLibrary.Implementations
 {
@@ -20,6 +22,7 @@ namespace ECommerceSampleClassLibrary.Implementations
             _productRepo = productRepo;
         }
 
+        [AllowAnonymous]
         public Guid AddCustomer(PostCustomer customer)
         {
             var customerEntity = new Customer()
@@ -28,6 +31,8 @@ namespace ECommerceSampleClassLibrary.Implementations
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 PhoneNumber = customer.PhoneNumber,
+                Password = customer.Password,
+                Roles = customer.Role
             };
             _repository.Add(customerEntity);
             return customerEntity.Id;
@@ -35,14 +40,16 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public void DeleteCustomer(Guid id)
         {
-            CheckEntityFoundError(id);
-            _repository.Delete(_repository.Get(id));
+            if (CheckEntityFoundError(id))
+                _repository.Delete(_repository.Get(id));
+            else throw new EntityNotFoundException("customer not found");
         }
 
         public ViewCustomer GetOrdersByCustomers(Guid id)
         {
-            CheckEntityFoundError(id);
-            var orders =
+            if (CheckEntityFoundError(id))
+            {
+                var orders =
                 (from order in _orderRepo.GetAll(null).ToList()
                  where order.CustomerId == id
                  join product in _orderProductRepo.GetAll(null) on order.Id equals product.OrderId into orderProducts
@@ -52,33 +59,42 @@ namespace ECommerceSampleClassLibrary.Implementations
                      ProductName = _productRepo.Get(joined.ProductId).Name, // Handle potential nulls
                      ProductQuantity = joined?.Quantity ?? 0 // Set default for null Quantity
                  }).ToList();
-            return new ViewCustomer(_repository.Get(id), orders);
+                return new ViewCustomer(_repository.Get(id), orders);
+            }
+            else
+                throw new EntityNotFoundException("customer not found");
 
         }
 
         public void UpdateCustomer(Guid id, PostCustomer customer)
         {
-            CheckEntityFoundError(id);
-            _repository.Update(new Customer()
+            if (CheckEntityFoundError(id))
             {
-                Id = id,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                PhoneNumber = customer.PhoneNumber,
-                Email = customer.Email,
-            });
+                var customerEntity = new Customer()
+                {
+                    Id = id,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    PhoneNumber = customer.PhoneNumber,
+                    Email = customer.Email,
+                };
+                _repository.Update(customerEntity);
+            }
+            else throw new EntityNotFoundException("customer not found");
+
+
         }
 
-        public void CheckEntityFoundError(Guid id)
+        public bool CheckEntityFoundError(Guid id)
         {
             var customer = _repository.Get(id);
             if (customer != null)
             {
-                return;
+                return true;
             }
             else
             {
-                throw new EntityNotFoundException("customer not found");
+                return false;
             }
         }
     }

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerceSampleClassLibrary.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240202175930_initialization")]
+    [Migration("20240208112308_initialization")]
     partial class initialization
     {
         /// <inheritdoc />
@@ -62,10 +62,17 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Roles")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -84,10 +91,9 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
+                    b.Property<int>("Status")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

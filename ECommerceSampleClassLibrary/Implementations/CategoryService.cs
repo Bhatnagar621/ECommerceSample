@@ -34,20 +34,21 @@ namespace ECommerceSampleClassLibrary.Implementations
 
         public ViewCategory GetCategory(Guid id)
         {
-            CheckEntityFoundError(id);
-            return new ViewCategory(_repository.Get(id));
+            if (CheckEntityFoundError(id))
+                return new ViewCategory(_repository.Get(id));
+            else throw new EntityNotFoundException("customer not found");
         }
 
-        public void CheckEntityFoundError(Guid id)
+        public bool CheckEntityFoundError(Guid id)
         {
             var customer = _repository.Get(id);
             if (customer != null)
             {
-                return;
+                return true;
             }
             else
             {
-                throw new EntityNotFoundException("category not found");
+                return false;
             }
         }
     }

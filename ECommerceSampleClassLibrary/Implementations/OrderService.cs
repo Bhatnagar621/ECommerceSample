@@ -1,4 +1,5 @@
 ﻿using ECommerceSampleClassLibrary.Domains;
+using ECommerceSampleClassLibrary.Enums;
 using ECommerceSampleClassLibrary.Exceptions;
 using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
@@ -21,8 +22,8 @@ namespace ECommerceSampleClassLibrary.Implementations
             var orderDetails = new Order()
             {
                 CustomerId = order.CustomerId,
-                Products = GetProductList(order.ProductIdAndQuantity, Guid.Empty),
-                Status = "Placed"
+                Products = GetProductList(order.ProductIdAndQuantity),
+                Status = StatusEnum.Placed
             };
             _repository.Add(orderDetails);
             return orderDetails.Id;
@@ -39,7 +40,7 @@ namespace ECommerceSampleClassLibrary.Implementations
 
 
 
-        private ICollection<OrderProduct> GetProductList(IDictionary<Guid, int> prodQuant, Guid id)
+        private ICollection<OrderProduct> GetProductList(IDictionary<Guid, int> prodQuant)
         {
             ICollection<OrderProduct> _prodQuant = new List<OrderProduct>();
                 foreach (var productIdAndQuantity in prodQuant)
@@ -63,7 +64,6 @@ namespace ECommerceSampleClassLibrary.Implementations
                     }
                 }
                 return _prodQuant;
-            
         }
     }
 }

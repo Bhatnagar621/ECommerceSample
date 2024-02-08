@@ -15,14 +15,14 @@ namespace ECommerceSample.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         [InventoryCheckFilter]
         public Guid AddOrder([FromBody] PostOrder postOrder)
         {
             return _orderRepository.AddOrder(postOrder);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public void DeleteOrder(Guid id)
         {
             _orderRepository.DeleteOrder(id);

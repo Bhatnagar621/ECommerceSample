@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj": {}
+    "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
+    "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj",
         "projectName": "ECommerceSampleClassLibrary",
-        "projectPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\obj\\",
+        "projectPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\kushagra.bhatnagar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kushagra.bhatnagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.1, )"
@@ -56,6 +60,10 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -67,6 +75,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.3.1, )"
             }
           },
           "imports": [
@@ -89,17 +101,17 @@
         }
       }
     },
-    "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj": {
+    "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
+        "projectUniqueName": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
         "projectName": "ECommerceSample",
-        "projectPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSample\\obj\\",
+        "projectPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\ECommerceSample.csproj",
+        "packagesPath": "C:\\Users\\kushagra.bhatnagar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSample\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kushagra.bhatnagar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -113,8 +125,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\DELL\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj"
+              "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\kushagra.bhatnagar\\source\\repos\\ECommerceSample\\ECommerceSampleClassLibrary\\ECommerceSampleClassLibrary.csproj"
               }
             }
           }
@@ -129,6 +141,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.1, )"
@@ -145,6 +161,10 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -159,7 +179,11 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.3.1, )"
             }
           },
           "imports": [

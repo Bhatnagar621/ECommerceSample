@@ -1,5 +1,6 @@
 ﻿using ECommerceSampleClassLibrary.Interfaces;
 using ECommerceSampleClassLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceSample.Controllers
@@ -13,25 +14,25 @@ namespace ECommerceSample.Controllers
         {
             _customerService = customerService;
         }
-        [HttpGet("getDetails/{id}")]
+        [HttpGet("{id}")]
         public ViewCustomer GetAllDetails(Guid id)
         {
             return _customerService.GetOrdersByCustomers(id);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public Guid AddCustomer(PostCustomer customer)
         {
             return _customerService.AddCustomer(customer);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public void DeleteCustomer(Guid id) 
         { 
             _customerService.DeleteCustomer(id);
         }
 
-        [HttpPatch("update/{id}")]
+        [HttpPatch("{id}")]
         public void UpdateCustomer(Guid id, PostCustomer customer)
         {
             _customerService.UpdateCustomer(id, customer);

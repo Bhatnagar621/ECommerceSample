@@ -59,10 +59,17 @@ namespace ECommerceSampleClassLibrary.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Roles")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -81,10 +88,9 @@ namespace ECommerceSampleClassLibrary.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
+                    b.Property<int>("Status")
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

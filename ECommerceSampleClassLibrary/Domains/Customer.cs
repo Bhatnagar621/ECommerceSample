@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ECommerceSampleClassLibrary.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceSampleClassLibrary.Domains
 {
@@ -10,5 +11,7 @@ namespace ECommerceSampleClassLibrary.Domains
         public string Email { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
+        public string Password { get; set; }
+        public RolesEnum Roles { get; set; }
     }
 }

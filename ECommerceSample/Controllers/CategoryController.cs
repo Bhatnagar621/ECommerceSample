@@ -14,19 +14,19 @@ namespace ECommerceSample.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        [HttpGet("getAll")]
+        [HttpGet]
         public ICollection<ViewCategory> GetAllCategory()
         {
             return _categoryRepository.GetAllCategory();
         }
 
-        [HttpGet("get/{id}")]
+        [HttpGet("{id}")]
         public ViewCategory GetCategory(Guid id)
         {
             return _categoryRepository.GetCategory(id);
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public Guid AddCategory(PostCategory category)
         {
             return _categoryRepository.AddCategory(category);

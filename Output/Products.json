@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Phone",
+    "quantity": 20,
+    "measurement": "amount",
+    "category": "Electronics"
+  },
+  {
+    "name": "Television",
+    "quantity": 10,
+    "measurement": "amount",
+    "category": "Electronics"
+  },
+  {
+    "name": "Laptop",
+    "quantity": 15,
+    "measurement": "amount",
+    "category": "Electronics"
+  },
+  {
+    "name": "TShirt",
+    "quantity": 20,
+    "measurement": "amount",
+    "category": "Clothing"
+  },
+  {
+    "name": "Tracksuit",
+    "quantity": 10,
+    "measurement": "pairs",
+    "category": "Clothing"
+  },
+  {
+    "name": "Jacket",
+    "quantity": 25,
+    "measurement": "amount",
+    "category": "Clothing"
+  },
+  {
+    "name": "Sofa",
+    "quantity": 5,
+    "measurement": "amount",
+    "category": "Furniture"
+  },
+  {
+    "name": "Table",
+    "quantity": 10,
+    "measurement": "amount",
+    "category": "Furniture"
+  },
+  {
+    "name": "Chair",
+    "quantity": 20,
+    "measurement": "amount",
+    "category": "Furniture"
+  }
+]
